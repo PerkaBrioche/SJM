@@ -7,7 +7,6 @@
 // Sets default values
 ASmashCharacter::ASmashCharacter()
 {
-	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 }
 
@@ -15,8 +14,29 @@ ASmashCharacter::ASmashCharacter()
 void ASmashCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	
 }
+
+float ASmashCharacter::GetOrientX() const
+{
+	return OrientX;
+}
+
+void ASmashCharacter::SetOrientX(float newOrientX)
+{
+	OrientX = newOrientX;
+}
+
+void ASmashCharacter::RotateMeshWithOrient() const
+{
+	FRotator actualRotation = GetMesh()->GetRelativeRotation();
+	actualRotation.Yaw = - 90.f * OrientX;
+	GetMesh()->SetRelativeRotation(actualRotation);
+}
+
+
+
+
+
 
 // Called every frame
 void ASmashCharacter::Tick(float DeltaTime)

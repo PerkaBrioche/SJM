@@ -29,6 +29,11 @@ void AMatchGameMode::SpawnCharacter()
 		instantiateCharacter->AutoPossessPlayer = sp->AutoReceiveInput;
 		instantiateCharacter->FinishSpawning(sp->GetTransform());
 		smashCharactersInGame.Add(instantiateCharacter);
+
+		// CHANGE ROTATION
+		instantiateCharacter->SetOrientX(sp->GetStartOrientX());
+		instantiateCharacter->RotateMeshWithOrient();
+		
 	}
 }
 
