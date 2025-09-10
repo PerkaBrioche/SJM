@@ -26,12 +26,5 @@ private:
 protected:
 	UPROPERTY()
 	TArray<ASmashCharacter*> smashCharactersInGame;
-	UPROPERTY(EditAnywhere)
-	TSubclassOf<ASmashCharacter> smashCharacterP0;
-		UPROPERTY(EditAnywhere)
-	TSubclassOf<ASmashCharacter> smashCharacterP1;
-		UPROPERTY(EditAnywhere)
-	TSubclassOf<ASmashCharacter> smashCharacterP2;
-		UPROPERTY(EditAnywhere)
-	TSubclassOf<ASmashCharacter> smashCharacterP3;
+
 };
