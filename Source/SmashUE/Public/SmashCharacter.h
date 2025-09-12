@@ -6,6 +6,7 @@
 #include "GameFramework/Character.h"
 #include "SmashCharacter.generated.h"
 
+class USmashCharacterStateMachine;
 UCLASS()
 class SMASHUE_API ASmashCharacter : public ACharacter
 {
@@ -17,12 +18,16 @@ public:
 	float GetOrientX() const;
 	void SetOrientX(float newOrientX);
 	void RotateMeshWithOrient() const;
+	void CreateStateMachine();
+	void InitStateMachine();
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 	UPROPERTY(EditAnywhere)
 	float OrientX = 1;
+	UPROPERTY()
+	TObjectPtr<USmashCharacterStateMachine> StateMachine;
 
 
 public:
