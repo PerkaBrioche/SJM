@@ -17,13 +17,30 @@ ECharacterStates USmashCharacterState::GetStateID()
 	return ECharacterStates::None;
 }
 
+void USmashCharacterState::StateTick(float DeltaTime)
+{
+}
+
+UAnimMontage* USmashCharacterState::GetAnimMontage()
+{
+	return UAM_Animation;
+}
 
 void USmashCharacterState::InitMachineState(USmashCharacterStateMachine* InSm)
 {
 	StateMachine = InSm;
 	Character = InSm->GetCharacter();
-	//GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Blue, FString::Printf(TEXT("%hhd"), InSm->GetStateID()));
-	//GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Blue, FString::Printf(TEXT("%s"), InSm->GetStateID()));
+}
+
+void USmashCharacterState::StateEnter(ECharacterStates PreviousStateID)
+{
+	auto A = GetAnimMontage();
+	Character->PlayAnimMontage(A);
+}
+
+void USmashCharacterState::StateExit(ECharacterStates NewStateID)
+{
+	
 }
 
 

@@ -21,6 +21,24 @@ ECharacterStates USmashCharacterStateIdle::GetStateID()
 	return ECharacterStates::Idle;
 }
 
+void USmashCharacterStateIdle::StateEnter(ECharacterStates PreviousStateID)
+{
+	GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Green, "ENTER IDLE STATE");
+	Super::StateEnter(PreviousStateID);
+}
+
+void USmashCharacterStateIdle::StateExit(ECharacterStates NewStateID)
+{
+	Super::StateExit(NewStateID);
+	GEngine->AddOnScreenDebugMessage(-1, 5, FColor::Red, "EXIT IDLE STATE");
+}
+
+void USmashCharacterStateIdle::StateTick(float DeltaTime)
+{
+	Super::StateTick(DeltaTime);
+}
+
+
 
 // Called when the game starts
 void USmashCharacterStateIdle::BeginPlay()

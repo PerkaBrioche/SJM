@@ -20,13 +20,20 @@ public:
 	void RotateMeshWithOrient() const;
 	void CreateStateMachine();
 	void InitStateMachine();
+	void Move();
+	void StartMoving(float speed);
+	void StopMoving();
+
+	void TickStateMachine(float DeltaTime) const;
 
 protected:
 	// Called when the game starts or when spawned
+
+	
 	virtual void BeginPlay() override;
 	UPROPERTY(EditAnywhere)
 	float OrientX = 1;
-	UPROPERTY()
+	UPROPERTY(BlueprintreadWrite)
 	TObjectPtr<USmashCharacterStateMachine> StateMachine;
 
 
@@ -36,4 +43,8 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	private:
+		float FCurrentSpeed = 0.f;
+	bool bIsMoving = false;
 };

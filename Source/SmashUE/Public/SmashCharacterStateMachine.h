@@ -9,6 +9,9 @@
 #include "SmashCharacterStateMachine.generated.h"
 
 class USmashCharacterState;
+class ASmashCharacter;
+enum class ESmashCharacterState : uint8;
+
 
 UCLASS()
 class SMASHUE_API USmashCharacterStateMachine : public UObject
@@ -17,10 +20,22 @@ class SMASHUE_API USmashCharacterStateMachine : public UObject
 
 	USmashCharacterStateMachine();
 public:
+	
 	void InitStateMachine(ASmashCharacter* InASmashCharacter);
+	
 	ASmashCharacter* GetCharacter() const;
+	
 	ECharacterStates GetStateID() const;
+
+	void Tick(float DeltaTime);
+
+UFUNCTION(BlueprintCallable)
+	void ChangeState(ECharacterStates NewStateID);
+	USmashCharacterState* GetState(ECharacterStates StateID);
+	
 protected:
+
+	
 	UPROPERTY()
 	ASmashCharacter* CurrentASmashCharacter;
 
@@ -29,6 +44,13 @@ protected:
 	void FindStates();
 	void InitiStates();
 
+	UPROPERTY(BlueprintReadOnly)
+	ECharacterStates CurrentStateID;
+	UPROPERTY()
+	TObjectPtr<USmashCharacterState> CurrentState;
+
 private:
 	bool HasTryFindState = false;
 };
+
+

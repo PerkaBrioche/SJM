@@ -18,6 +18,17 @@ public:
 	USmashCharacterState();
 	virtual ECharacterStates GetStateID();
 	virtual void InitMachineState(USmashCharacterStateMachine* InSm);
+
+	virtual void StateEnter(ECharacterStates PreviousStateID);
+	virtual void StateExit(ECharacterStates NewStateID);
+
+	virtual void StateTick(float DeltaTime);
+
+	UFUNCTION(BlueprintCallable)
+	virtual UAnimMontage* GetAnimMontage();
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UAnimMontage> UAM_Animation;
+	
 protected:
 	UPROPERTY()
 	TObjectPtr<ASmashCharacter> Character;
